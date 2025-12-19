@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Corvallis Junior Baseball Organization (JBO) prepares middle school baseball players headed to Corvallis High School or Crescent Valley High School for the next level through Spring and Summer baseball." />
+  <title>Corvallis Junior Baseball Organization</title>
+  <style>
+    :root{
+      /* Flyer-matched palette */
+      --bg:#f1d6a6;              /* paper */
+      --paper:#f1d6a6;
+      --ink:#1a1a1a;             /* near-black */
+      --orange:#d96a1a;              /* original flyer orange */
+      --orange-dark:#b55212; /* WCAG AA-compliant orange */          /* primary flyer orange */
+      --orange-dark:#8a3f06;
+      --line:rgba(0,0,0,.15);
+      --shadow: 0 10px 22px rgba(0,0,0,.18);
+      --radius: 14px;
+      --radius2: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      font-family: "Impact", "Anton", "Oswald", "Arial Black", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(217,106,26,.25), transparent 55%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.035), rgba(0,0,0,.035) 1px, transparent 1px, transparent 3px),
+        linear-gradient(180deg, #f6e2bf 0%, var(--paper) 60%);
+      color:var(--ink);
+      line-height:1.35;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px 20px 64px;}
+
+    /* Top bar */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background: rgba(241,214,166,.92);
+      border-bottom:2px solid var(--ink);
+    }
+    .top{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none}
+    .mark{
+      width:44px; height:44px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      overflow:visible;
+    }
+    .markSvg{width:44px; height:44px; display:block}
+    .mark:before{transform:rotate(22deg)}
+    .mark:after{transform:rotate(-22deg)}
+    
+    .mark:after{right:38%}
+    .mark:before{
+      content:"";
+      position:absolute;
+      inset:-40% -40%;
+      background: repeating-linear-gradient(45deg, rgba(0,0,0,.0) 0 10px, rgba(0,0,0,.18) 10px 20px);
+      transform:rotate(12deg);
+      opacity:.6;
+    }
+    .brand .title{display:flex; flex-direction:column; gap:2px}
+    .brand .title strong{font-size:14px; letter-spacing:.08em; text-transform:uppercase}
+    .brand .title span{font-size:12px; color:var(--muted)}
+
+    nav{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .navlink{
+      font-size:13px;
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .navlink:hover{color:var(--text); border-color:var(--line); background: rgba(255,255,255,.03)}
+
+    .btn{
+      appearance:none;
+      border:0;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:700;
+      font-size:13px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:.02em;
+      white-space:nowrap;
+      transition: transform .08s ease, filter .15s ease;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      color:#ffffff; /* white text */
+      background: var(--orange);
+      border:3px solid var(--ink);
+      box-shadow:none;
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+    .btn:hover{filter:brightness(1.03)}
+
+    /* Hero */
+    .hero{
+      padding:48px 0 24px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+    }
+    .heroCard{
+      border:4px solid var(--ink);
+      background: transparent;
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(800px 240px at 20% 10%, rgba(255,122,24,.26), transparent 65%),
+        radial-gradient(600px 220px at 90% 40%, rgba(255,154,58,.14), transparent 55%);
+      pointer-events:none;
+    }
+    .heroInner{position:relative; padding:28px; overflow:hidden}
+
+    .kicker{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:0;
+      border:3px solid var(--ink);
+      background: var(--orange);
+      color:#ffffff; /* white text */
+      font-size:14px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--orange);
+      box-shadow:0 0 0 5px rgba(255,122,24,.16);
+    }
+
+    h1{
+      margin:14px 0 12px;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height:1.02;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size: 16px;
+      max-width: 64ch;
+    }
+
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+
+    .side{
+      border:4px solid var(--ink);
+      border-radius:var(--radius2);
+      background: transparent;
+      box-shadow: var(--shadow);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .side:before{content:none}
+    .side > *{position:relative}
+
+    .tileTitle{margin:0 0 8px; font-size:14px; letter-spacing:.08em; text-transform:uppercase}
+    .tileText{margin:0 0 12px; color:var(--muted); font-size:14px}
+
+    .pillList{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .pill{font-size:12px; color:var(--text); border:1px solid var(--line); background:rgba(255,255,255,.03); padding:7px 10px; border-radius:999px}
+
+    /* Sections */
+    .card{
+
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.32);
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .card p{margin:0; color:var(--muted)}
+
+    .card.big{grid-column: span 7;}
+    .card.small{grid-column: span 5;}
+    .card.full{grid-column: 1 / -1;}
+
+    .list{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+    }
+    .badge{
+      flex:0 0 auto;
+      width:34px; height:34px;
+      border-radius:12px;
+      background: rgba(255,122,24,.12);
+      border:1px solid rgba(255,122,24,.25);
+      display:grid;
+      place-items:center;
+      color: var(--orange2);
+      font-weight:900;
+    }
+    .item strong{display:block; font-size:14px}
+    .item span{display:block; color:var(--muted); font-size:13px; margin-top:2px}
+
+    /* Footer */
+    footer{
+      margin-top:26px;
+      border-top:2px solid var(--ink);
+      padding-top:18px;
+      color:#2b2b2b;
+      font-size:12px;
+    }
+    .footerRow{display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; align-items:center}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{grid-template-columns: 1fr;}
+      .card.big,.card.small{grid-column: 1 / -1;}
+      nav{display:none}
+    }
+
+    /* Smooth scrolling */
+    html{scroll-behavior:smooth}
+
+    /*
+      Robust focus styles (WCAG 2.2 focus appearance)
+      - Highly visible outline
+      - Clear offset from element
+      - Works on light (paper) and dark (ink) surfaces
+    */
+    :where(a, button, input, select, textarea, [tabindex]):focus{outline:none}
+
+    :where(a, button, input, select, textarea, [tabindex]):focus-visible{
+      outline: 3px solid #000;
+      outline-offset: 3px;
+      border-radius: 10px;
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 6px rgba(217,106,26,.85);
+    }
+
+    /* Make sure our custom UI elements look great when focused */
+    .btn:focus-visible{
+      outline-offset: 4px;
+      border-radius: 999px;
+    }
+
+    .navlink:focus-visible{
+      border-radius: 12px;
+    }
+
+    /* If the focused element already has a strong border, keep focus ring outside */
+    .heroCard:focus-visible,
+    .card:focus-visible{
+      outline-offset: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top">
+      <a class="brand" href="#top" aria-label="Corvallis Junior Baseball Organization home">
+        <div class="mark" aria-hidden="true">
+          <svg class="markSvg" viewBox="0 0 100 100" role="img" aria-label="Baseball">
+            <!-- ball -->
+            <defs>
+              <radialGradient id="shine" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                <stop offset="40%" stop-color="#ffffff" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="44" fill="#f6f0e6" />
+            <circle cx="50" cy="50" r="44" fill="url(#shine)" />
+            <!-- inner outline -->
+            <circle cx="50" cy="50" r="44" fill="none" stroke="var(--ink)" stroke-width="4" />
+            <!-- outer orange ring -->
+            <circle cx="50" cy="50" r="48" fill="none" stroke="var(--orange)" stroke-width="6" />
+
+            <!-- seams -->
+            <path d="M 22 18 C 38 36, 38 64, 22 82" fill="none" stroke="#b22222" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M 78 18 C 62 36, 62 64, 78 82" fill="none" stroke="#b22222" stroke-width="2.5" stroke-linecap="round" />
+
+            <!-- stitches (left) -->
+            <g stroke="#b22222" stroke-width="2" stroke-linecap="round">
+              <line x1="26" y1="22" x2="33" y2="18" />
+              <line x1="28" y1="29" x2="35" y2="25" />
+              <line x1="30" y1="36" x2="37" y2="32" />
+              <line x1="31" y1="43" x2="38" y2="39" />
+              <line x1="31" y1="50" x2="38" y2="50" />
+              <line x1="31" y1="57" x2="38" y2="61" />
+              <line x1="30" y1="64" x2="37" y2="68" />
+              <line x1="28" y1="71" x2="35" y2="75" />
+              <line x1="26" y1="78" x2="33" y2="82" />
+            </g>
+
+            <!-- stitches (right) -->
+            <g stroke="#b22222" stroke-width="2" stroke-linecap="round">
+              <line x1="74" y1="22" x2="67" y2="18" />
+              <line x1="72" y1="29" x2="65" y2="25" />
+              <line x1="70" y1="36" x2="63" y2="32" />
+              <line x1="69" y1="43" x2="62" y2="39" />
+              <line x1="69" y1="50" x2="62" y2="50" />
+              <line x1="69" y1="57" x2="62" y2="61" />
+              <line x1="70" y1="64" x2="63" y2="68" />
+              <line x1="72" y1="71" x2="65" y2="75" />
+              <line x1="74" y1="78" x2="67" y2="82" />
+            </g>
+          </svg>
+        </div>
+        <div class="title">
+          <strong>Corvallis JBO</strong>
+          <span>Corvallis Junior Baseball Organization</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <a class="navlink" href="#about">About</a>
+        <a class="navlink" href="#signup">Sign Up</a>
+        <a class="navlink" href="#volunteer">Volunteer</a>
+        <a class="navlink" href="#field">Williams Field</a>
+        <a class="navlink" href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn ghost" href="#signup">2026 Season</a>
+        <a class="btn primary" href="#contact">Get Involved</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div class="heroCard">
+        <div class="heroInner">
+          <div class="kicker">Spring / Summer 2026 • Incoming CHS & CV Players</div>
+          <h1>Play baseball.<br/>Build community.</h1>
+          <p class="sub">
+            Corvallis Junior Baseball Organization (JBO) supports middle school baseball players preparing to attend
+            Corvallis High School or Crescent Valley High School, with a strong emphasis on skill development,
+            sportsmanship, and preparing athletes for the next level of play.
+          </p>
+          
+          <div class="ctaRow">
+            <a class="btn primary" href="#signup">Sign Up for 2026</a>
+            <a class="btn ghost" href="#volunteer">Volunteer Opportunities</a>
+            <a class="btn ghost" href="https://www.CorvallisJBO.org" target="_blank" rel="noopener">Visit: CorvallisJBO.org</a>
+          </div>
+          <div class="pillList" aria-label="Highlights">
+            <span class="pill">Orange + Black Theme</span>
+            <span class="pill">Family Volunteers</span>
+            <span class="pill">Player Development</span>
+            <span class="pill">Community Sponsors</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side" aria-label="Quick info">
+        <h3 class="tileTitle">Quick Info</h3>
+        <p class="tileText">Everything you need, in one place.</p>
+
+        <ul class="list" style="margin-top:12px">
+          <li class="item">
+            <div class="badge">1</div>
+            <div>
+              <strong>Registration</strong>
+              <span>Spring/Summer 2026 signups are open (or opening soon).</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">2</div>
+            <div>
+              <strong>Volunteers Needed</strong>
+              <span>Help with fundraising, team support, and field upkeep.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">3</div>
+            <div>
+              <strong>Williams Field</strong>
+              <span>Join our field maintenance crew to keep it game-ready.</span>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <section id="about" class="grid" aria-label="About">
+      <div class="card big">
+        <h2>Who JBO Is For</h2>
+        <p>
+          JBO is designed for <strong>middle school baseball players</strong> who will attend <strong>Corvallis High School (CHS)</strong>
+          or <strong>Crescent Valley High School (CV)</strong>. Our program helps players bridge the gap between youth baseball and
+          high school-level expectations.
+        </p>
+        <ul class="list">
+          <li class="item">
+            <div class="badge">⚾</div>
+            <div>
+              <strong>High School Preparation</strong>
+              <span>Practice structure and instruction aligned with what players will see at CHS and CV.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">📈</div>
+            <div>
+              <strong>Player Development Focus</strong>
+              <span>Emphasis on fundamentals, baseball IQ, and consistent reps.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">🤝</div>
+            <div>
+              <strong>Community & Continuity</strong>
+              <span>Build connections with players you'll likely compete alongside in high school.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card small" id="signup" aria-label="Sign up">
+        <h2>Sign Up</h2>
+        <p>
+          If you are a middle school player planning to attend <strong>Corvallis High School</strong> or <strong>Crescent Valley High School</strong>,
+          JBO is the ideal Spring/Summer program to get ready for high school baseball.
+        </p>
+        <div class="ctaRow" style="margin-top:14px">
+          <a class="btn primary" href="https://www.CorvallisJBO.org" target="_blank" rel="noopener">2026 Player Registration</a>
+          <a class="btn ghost" href="#contact">Eligibility Questions?</a>
+        </div>
+        <div class="pillList" style="margin-top:14px">
+          <span class="pill">Spring / Summer</span>
+          <span class="pill">Youth Baseball</span>
+          <span class="pill">Corvallis, OR</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="volunteer" class="grid" aria-label="Volunteer">
+      <div class="card small">
+        <h2>Volunteers Needed</h2>
+        <p>
+          JBO runs on family support. If you can help for an hour a week—or just a few times per season—we’d love to have you.
+        </p>
+        <ul class="list">
+          <li class="item">
+            <div class="badge">$</div>
+            <div>
+              <strong>Fundraising</strong>
+              <span>Community outreach, sponsorships, events, and coordination.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">🙌</div>
+            <div>
+              <strong>Team Support</strong>
+              <span>Help at practices, game-day logistics, or special events.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">🧰</div>
+            <div>
+              <strong>General Help</strong>
+              <span>Admin tasks, communications, and keeping things organized.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card big" id="field" aria-label="Williams Field">
+        <h2>Williams Field Maintenance</h2>
+        <p>
+          We’re building a small crew to bring Williams Field up to standard for the season. Ideal for anyone who likes hands-on projects.
+        </p>
+        <ul class="list">
+          <li class="item">
+            <div class="badge">🌱</div>
+            <div>
+              <strong>Lawn Care & Groundskeeping</strong>
+              <span>Mowing, edging, weeding, and keeping the facility safe and welcoming.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">🎨</div>
+            <div>
+              <strong>Painting Projects</strong>
+              <span>Dugouts, railings, and touch-ups to keep the field looking sharp.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="badge">🧱</div>
+            <div>
+              <strong>Fence Repair & Upkeep</strong>
+              <span>Minor repairs and cleanup to improve the player and fan experience.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="grid" aria-label="Contact">
+      <div class="card full">
+        <h2>Contact</h2>
+        <p>
+          Want to sign up, volunteer, sponsor, or ask a question? Reach out and we’ll get you connected.
+        </p>
+
+        <div class="grid" style="margin-top:14px">
+          <div class="card" style="grid-column: span 6; background: rgba(0,0,0,.18)">
+            <h2 style="margin-bottom:8px">Website</h2>
+            <p style="margin-bottom:14px">Updates, registration, and season info.</p>
+            <a class="btn primary" href="https://www.CorvallisJBO.org" target="_blank" rel="noopener">www.CorvallisJBO.org</a>
+          </div>
+          <div class="card" style="grid-column: span 6; background: rgba(0,0,0,.18)">
+            <h2 style="margin-bottom:8px">Email</h2>
+            <p style="margin-bottom:14px">Add your league email address here when ready.</p>
+            <a class="btn ghost" href="mailto:info@corvallisjbo.org">info@corvallisjbo.org</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footerRow">
+        <div>
+          <strong style="color:var(--text)">Corvallis Junior Baseball Organization</strong><br/>
+          <span>Community youth baseball • Orange & Black</span>
+        </div>
+        <div style="max-width: 64ch">
+          The Corvallis School District does not necessarily sponsor this organization or its activities. The District assumes no liability for its contents or events arising out of this distribution.
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
